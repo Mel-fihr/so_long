@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   check_file_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-fihr <mel-fihr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 18:17:39 by mel-fihr          #+#    #+#             */
-/*   Updated: 2024/03/24 04:29:23 by mel-fihr         ###   ########.fr       */
+/*   Created: 2024/03/28 07:58:17 by mel-fihr          #+#    #+#             */
+/*   Updated: 2024/03/28 08:27:39 by mel-fihr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	flood_fill(t_data *data, int i, int j)
+void	check_file_extention(char *file)
 {
-	if (i < 0 || i >= data->height || j < 0 || j >= data->width)
-		return ;
-	if (data->map[i][j] == 'E')
-		data->map[i][j] = '1';
-	if (data->map[i][j] != '1')
-	{
-		data->map[i][j] = '1';
-		flood_fill(data, i + 1, j);
-		flood_fill(data, i - 1, j);
-		flood_fill(data, i, j + 1);
-		flood_fill(data, i, j - 1);
-	}
-}
+	int	i;
 
-void	init(t_ecp *ecp)
-{
-	ecp->i = 0;
-	ecp->j = 0;
-	ecp->c = 0;
-	ecp->e = 0;
-	ecp->p = 0;
+	i = 0;
+	while (file[i])
+		i++;
+	if (i < 4 || file[i - 1] != 'r' || file[i - 2] != 'e'
+		|| file[i - 3] != 'b' || file[i - 4] != '.')
+	{
+		ft_printf("Error, File extention is not .ber\n");
+		exit(0);
+	}
 }

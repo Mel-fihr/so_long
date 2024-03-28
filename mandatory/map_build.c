@@ -6,7 +6,7 @@
 /*   By: mel-fihr <mel-fihr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 14:40:06 by mel-fihr          #+#    #+#             */
-/*   Updated: 2024/02/07 00:11:41 by mel-fihr         ###   ########.fr       */
+/*   Updated: 2024/02/28 03:43:32 by mel-fihr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	xpm_to_img(t_images *images, t_data *data)
 	int	height;
 
 	data->move = 0;
-	images->wall = mlx_xpm_file_to_image(data->mlx, "./mandatory/images/wall.xpm",
-			&width, &height);
-	images->floor = mlx_xpm_file_to_image(data->mlx, "./mandatory/images/floor.xpm",
-			&width, &height);
-	images->exite = mlx_xpm_file_to_image(data->mlx, "./mandatory/images/exit.xpm",
-			&width, &height);
-	images->collect = mlx_xpm_file_to_image(data->mlx, "./mandatory/images/collect.xpm",
-			&width, &height);
-	images->player = mlx_xpm_file_to_image(data->mlx, "./mandatory/images/player.xpm",
-			&width, &height);
+	images->wall = mlx_xpm_file_to_image(data->mlx,
+			"./mandatory/images/wall.xpm", &width, &height);
+	images->floor = mlx_xpm_file_to_image(data->mlx,
+			"./mandatory/images/floor.xpm", &width, &height);
+	images->exite = mlx_xpm_file_to_image(data->mlx,
+			"./mandatory/images/exit.xpm", &width, &height);
+	images->collect = mlx_xpm_file_to_image(data->mlx,
+			"./mandatory/images/collect.xpm", &width, &height);
+	images->player = mlx_xpm_file_to_image(data->mlx,
+			"./mandatory/images/player.xpm", &width, &height);
 }
 
 void	put_image(t_data *data, t_images *images, int i, int j)
@@ -66,6 +66,12 @@ void	put_map(t_data *data, t_images *images)
 	i = 0;
 	data->collect = 0;
 	xpm_to_img(images, data);
+	if (!images->wall || !images->floor || !images->exite || !images->collect
+		|| !images->player)
+	{
+		ft_printf("Error, image didn't load\n");
+		exit(0);
+	}
 	while (i < data->height)
 	{
 		j = 0;

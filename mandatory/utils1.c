@@ -6,12 +6,11 @@
 /*   By: mel-fihr <mel-fihr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:19:09 by mel-fihr          #+#    #+#             */
-/*   Updated: 2024/02/06 14:24:50 by mel-fihr         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:25:52 by mel-fihr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 static int	wordcount(const char *s, char c)
 {

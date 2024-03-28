@@ -6,7 +6,7 @@
 /*   By: mel-fihr <mel-fihr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 03:31:54 by mel-fihr          #+#    #+#             */
-/*   Updated: 2024/02/07 00:04:25 by mel-fihr         ###   ########.fr       */
+/*   Updated: 2024/03/28 08:23:23 by mel-fihr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,9 @@ void	check_fd(int fd)
 {
 	if (fd < 0)
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		exit(0);
 	}
-}
-
-void	check_line(char *line)
-{
-	if (!line)
-	{
-		printf("Error\n");
-		exit(0);
-	}
-}
-
-char	**readmap(char *file, t_data *data)
-{
-	int		fd;
-	char	*line;
-	char	**map;
-	int		i;
-
-	i = 0;
-	fd = open(file, O_RDONLY);
-	check_fd(fd);
-	line = get_next_line(fd);
-	check_line(line);
-	data->width = ft_strlen(line);
-	while (line)
-	{
-		i++;
-		line = get_next_line(fd);
-	}
-	data->height = i;
-	close(fd);
-	fd = open(file, O_RDONLY);
-	map = malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (i < data->height)
-		map[i++] = get_next_line(fd);
-	return (map[i] = NULL, close(fd), map);
 }
 
 void	p_x_y(t_data *data)
@@ -90,10 +53,11 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		return (0);
 	}
 	data.file = av[1];
+	check_file_extention(av[1]);
 	data.map = readmap(av[1], &data);
 	p_x_y(&data);
 	parssing(&data);
@@ -101,7 +65,6 @@ int	main(int ac, char **av)
 	data.mlx_win = mlx_new_window(data.mlx,
 			(data.width - 1) * 32, data.height * 32, "so_long");
 	put_map(&data, &images);
-	puts("Welcome to so_long");
 	all.data = &data;
 	all.images = &images;
 	mlx_hook(data.mlx_win, 2, 1L << 0, player_movement, &all);

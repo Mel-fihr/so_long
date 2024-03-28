@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_game_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_printf_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-fihr <mel-fihr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 17:04:19 by mel-fihr          #+#    #+#             */
-/*   Updated: 2024/02/07 00:23:13 by mel-fihr         ###   ########.fr       */
+/*   Created: 2024/01/05 17:54:58 by mel-fihr          #+#    #+#             */
+/*   Updated: 2024/02/23 21:59:40 by mel-fihr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long_bonus.h"
+#include "so_long.h"
 
-int	close_game(t_all *all)
+int	ft_printf_char(int i)
 {
-	mlx_destroy_window (all->data->mlx, all->data->mlx_win);
-	exit (0);
+	write(1, &i, 1);
+	return (1);
 }
